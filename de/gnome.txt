@@ -1,0 +1,10 @@
+nautilus
+gst-plugin-pipewire
+gnome-shell
+gnome-session
+gnome-control-center
+gnome-weather
+gnome-tweaks
+gnome-shell-extension-vitals
+gnome-shell-extension-appindicator
+gnome-shell-extension-media-controls

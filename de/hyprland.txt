@@ -7,7 +7,6 @@ waybar
 swaync
 rofi
 foot
-starship
 btop
 rocm-smi-lib
 xdg-desktop-portal-hyprland
@@ -17,4 +16,3 @@ bluetuith-bin
 brightnessctl
 nwg-look
 yazi
-ly

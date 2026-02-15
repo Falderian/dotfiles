@@ -22,3 +22,5 @@ spotify
 celluloid
 wine
 steam
+starship
+ly
