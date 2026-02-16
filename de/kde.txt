@@ -7,3 +7,5 @@ spectacle
 photoqt-bin
 ly
 kitty
+haruna
+gwenview
