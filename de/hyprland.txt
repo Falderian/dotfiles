@@ -16,3 +16,4 @@ bluetuith-bin
 brightnessctl
 nwg-look
 yazi
+wf-recorder

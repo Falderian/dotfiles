@@ -4,8 +4,6 @@ kscreen
 plasma-pa
 dolphin
 spectacle
-photoqt-bin
-ly
 kitty
 haruna
 gwenview
