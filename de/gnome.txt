@@ -1,5 +1,3 @@
-nautilus
-gst-plugin-pipewire
 gnome-shell
 gnome-session
 gnome-control-center
@@ -8,3 +6,10 @@ gnome-tweaks
 gnome-shell-extension-vitals
 gnome-shell-extension-appindicator
 gnome-shell-extension-media-controls
+gnome-terminal
+gnome-backgrounds
+gnome-keyring
+power-profiles-daemon
+networkmanager
+nautilus
+gst-plugin-pipewire
