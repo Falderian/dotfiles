@@ -7,3 +7,4 @@ spectacle
 kitty
 haruna
 gwenview
+plasma-workspace-wallpapers
