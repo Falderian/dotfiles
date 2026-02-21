@@ -1,13 +1,12 @@
-CURRENT=$(gsettings get org.gnome.desktop.interface gtk-theme)
+#!/bin/bash
 
-# Theme names (change these if you use different variants)
-LIGHT_THEME="Fluent-red-Light-compact"
-DARK_THEME="Fluent-red-Dark-compact"
+# Get current color scheme
+CURRENT=$(gsettings get org.gnome.desktop.interface color-scheme)
 
-if [[ "$CURRENT" == "'Fluent-red-Dark-compact'" ]]; then
-    gsettings set org.gnome.desktop.interface gtk-theme "$LIGHT_THEME"
-    notify-sednd "GTK Theme" "Activating light theme" -i weather-clear
+if [[ "$CURRENT" == "'prefer-dark'" ]]; then
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+    notify-send "System Theme" "Switched to Light Mode" -i weather-clear
 else
-    gsettings set org.gnome.desktop.interface gtk-theme "$DARK_THEME"
-    notify-send "GTK Theme" "Activating dark theme" -i weather-clear-night
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    notify-send "System Theme" "Switched to Dark Mode" -i weather-clear-night
 fi
