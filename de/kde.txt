@@ -7,4 +7,5 @@ spectacle
 kitty
 haruna
 gwenview
-plasma-workspace-wallpapers
+kde-gtk-config
+breeze-gtk

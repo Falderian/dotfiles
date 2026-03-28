@@ -20,7 +20,7 @@ telegram-desktop-bin
 slack-desktop
 spotify
 celluloid
-wine
-steam
 starship
 ly
+faugus-launcher
+openvpn3
