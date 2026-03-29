@@ -4,7 +4,7 @@ kscreen
 plasma-pa
 dolphin
 spectacle
-kitty
+konsole
 haruna
 gwenview
 kde-gtk-config

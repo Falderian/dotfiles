@@ -5,7 +5,6 @@ gnome-weather
 gnome-tweaks
 gnome-shell-extension-vitals
 gnome-shell-extension-appindicator
-gnome-shell-extension-media-controls
 gnome-terminal
 gnome-backgrounds
 gnome-keyring
