@@ -4,9 +4,9 @@ hyprlock
 hyprpaper
 hyprshot
 waybar
-swaync
+mako
 rofi
-foot
+ghostty
 btop
 rocm-smi-lib
 xdg-desktop-portal-hyprland

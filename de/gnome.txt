@@ -12,3 +12,4 @@ power-profiles-daemon
 networkmanager
 nautilus
 gst-plugin-pipewire
+gdm
