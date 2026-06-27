@@ -15,39 +15,28 @@
 dir="$HOME/.config/rofi/powermenu/type-5"
 theme='style-1'
 
-
-# CMDs
 lastlogin="$(last $USER | head -n1 | tr -s ' ' | cut -d' ' -f5,6,7)"
 uptime="$(uptime | sed -e 's/up //g')"
 host=$(hostname)
 
-
-# Options
 shutdown=''
 reboot='󰜉'
 lock='󰌾'
 suspend='󰤄'
 logout='󰗽'
-# yes and no больше не нужны
 
-
-# Rofi CMD
 rofi_cmd() {
     rofi -dmenu \
         -p " $USER@$host" \
-        -mesg "󰍂 Last Login: $lastlogin 
+        -mesg "󰍂 Last Login: $lastlogin
  󱑂 Uptime: $uptime" \
         -theme ${dir}/${theme}.rasi
 }
 
-
-# Pass variables to rofi dmenu
 run_rofi() {
     echo -e "$suspend\n$shutdown\n$reboot\n$lock\n$logout" | rofi_cmd
 }
 
-
-# Actions
 chosen="$(run_rofi)"
 case ${chosen} in
     $shutdown)
@@ -57,12 +46,12 @@ case ${chosen} in
         systemctl reboot
         ;;
     $lock)
-        hyprlock -c ~/.config/hyprlock/hyprlock.conf 
+        swaylock -f -c 1a1a1a || hyprlock -c ~/.config/hyprlock/hyprlock.conf
         ;;
     $suspend)
         systemctl suspend
         ;;
     $logout)
-        hyprctl dispatch exit || pkill hyprland
+        hyprctl dispatch exit
         ;;
 esac

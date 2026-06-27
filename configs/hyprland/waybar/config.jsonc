@@ -11,46 +11,38 @@
     "tray",
     "hyprland/language",
     "clock",
-    "custom/notification"
+    "custom/theme-toggle"
   ],
   "hyprland/workspaces": {
-    "disable-scroll": false,
-    "all-outputs": true,
-    "format": "{icon}",
+    "all-outputs": false,
+    "format": "{id}",
     "format-icons": {
-      "urgent": "", // JetBrains Nerd: exclamation triangle (was )
-      "focused": "" // JetBrains Nerd: solid circle (was )
-    }
+      "urgent": "",
+      "focused": "",
+      "active": "",
+      "empty": "",
+      "default": ""
+    },
+    "on-click": "activate",
+    "disable-scroll": true
   },
   "hyprland/window": {
-    "max-length": 50
+    "format": "{title}",
+    "max-length": 80,
+    "separate-outputs": true
   },
   "temperature": {
     "thermal-zone": 2,
     "hwmon-path": ["/sys/class/hwmon/hwmon4/temp1_input"],
     "critical-threshold": 80,
     "format-critical": "{temperatureC}°C ",
-    "format": "{temperatureC}°C "
+    "format": "{temperatureC}°C ",
+    "on-click": "foot --title btop -e btop"
   },
-  "custom/notification": {
+  "custom/theme-toggle": {
+    "format": "",
     "tooltip": false,
-    "format": "{icon}",
-    "format-icons": {
-      "notification": "󱅫", // Bell + circle
-      "none": "󰂚",
-      "dnd-notification": "󰂛N", // Moon + circle
-      "dnd-none": "󰂛",
-      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
-      "inhibited-none": "",
-      "dnd-inhibited-notification": "󰂛",
-      "dnd-inhibited-none": "󰂛"
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true
+    "on-click": "~/.config/hypr/scripts/toggle-gtk-mode.sh"
   },
   "custom/appmenu": {
     "format": "󰣇",
@@ -64,20 +56,20 @@
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format": "{:%H:%M}",
-    "format-alt": "{:%A, %B %d, %Y}  " // Calendar icon (was 󰃭)
+    "format-alt": "{:%A, %B %d, %Y}  "
   },
   "memory": {
-    "format": "{:>3}% ", // RAM chip icon (was )
-    "on-click": "foot -e btop"
+    "format": "{:>3}% ",
+    "on-click": "foot --title btop -e btop"
   },
   "network": {
-    "format-disabled": " Отключён",
-    "format-wifi": "{bandwidthDownBits:>} ", // Wi-Fi icon (was 󰶡)
+    "format-disabled": " Disabled",
+    "format-wifi": "{bandwidthDownBits:>} ",
     "tooltip-format-wifi": "{essid}",
-    "format-ethernet": "{bandwidthDownBits:>} ", // Ethernet icon (was 󰶡)
+    "format-ethernet": "{bandwidthDownBits:>} ",
     "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
-    "format-disconnected": " Нет сети",
-    "on-click": "foot -e iwctl",
+    "format-disconnected": " No network",
+    "on-click": "foot --title nmtui -e nmtui",
     "interval": 2
   },
   "pulseaudio": {
@@ -93,7 +85,7 @@
       "default": ["", "", ""]
     },
     "scroll-step": 5,
-    "on-click": "foot -e pulsemixer",
+    "on-click": "foot --title pulsemixer -e pulsemixer",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
     "tooltip-format": "{desc} • {volume}%"
@@ -104,41 +96,36 @@
       "critical": 15
     },
     "format": "{capacity}% {icon}",
-    "format-charging": "{capacity}% ", // Plug icon
+    "format-charging": "{capacity}% ",
     "format-plugged": "{capacity}% ",
     "format-alt": "{icon} {time}",
-    "format-full": "{capacity}% ", // Battery full
-    "format-icons": [
-      "", // Battery 0-20%
-      "", // Battery 20-40%
-      "" // Battery 40-60%
-    ],
+    "format-full": "{capacity}% ",
+    "format-icons": ["", "", ""],
     "on-scroll-up": "brightnessctl set +5%",
     "on-scroll-down": "brightnessctl set 5%-"
   },
   "mpris": {
-    "player": "playerctld", // Assumed for active player tracking
-    "format": "{player_icon} {artist} - {title}", // Updated to use dynamic icon
+    "player": "playerctld",
+    "format": "{player_icon} {artist} - {title}",
     "player-icons": {
-      "spotify": "", // Spotify icon (Nerd Font)
-      "firefox": "󰈹", // Firefox icon
-      "telegram-desktop": "", // Telegram icon
-      "default": "🎵" // Fallback for other players
+      "spotify": "",
+      "firefox": "󰈹",
+      "telegram-desktop": "",
+      "default": "🎵"
     },
-    "tooltip-format": "{player}: {status}", // Updated for clarity (shows player name and status)
-    "on-click": "playerctl play-pause", // Your original: Play/pause active player
-    "on-click-right": "playerctl next", // Your original: Next track
-    "on-click-middle": "playerctl previous", // Added: Previous track (playback control)
-    "on-scroll-up": "playerctld shift", // Added: Next player (player switching)
-    "on-scroll-down": "playerctld unshift", // Added: Previous player (player switching)
+    "tooltip-format": "{player}: {status}",
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-click-middle": "playerctl previous",
+    "on-scroll-up": "playerctld shift",
+    "on-scroll-down": "playerctld unshift",
     "max-length": 40,
     "hide-on-empty": true
   },
   "hyprland/language": {
-    "format": "{}",
-    "format-en": "us",
-    "format-ru": "ru",
-    "tooltip": true
+    "format": "{short}",
+    "format-en": "US",
+    "format-ru": "RU"
   },
   "bluetooth": {
     "controller": "controller1",
@@ -149,6 +136,6 @@
     "format-connected": "󰂱 {num_connections}",
     "tooltip-format-connected": "{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "foot -e bluetuith"
+    "on-click": "foot --title bluetuith -e bluetuith"
   }
 }

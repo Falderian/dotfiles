@@ -1,11 +1,11 @@
 * {
-  font-family: "Roboto Flex";
-  font-size: 16px;
+  font-family: "JetBrains Mono";
+  font-size: 15px;
   border-radius: 4px;
-  font-weight: normal;
+  font-weight: bold;
 }
 
-@define-color transparent transparent;
+@define-color transparent rgba(0, 0, 0, 0);
 @define-color highlight-background #3B4252;
 @define-color tooltip-text #ECEFF4;
 @define-color tooltip-background #434C5E;
