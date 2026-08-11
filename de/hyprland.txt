@@ -1,7 +1,6 @@
 bluetuith-bin
 brightnessctl
 btop
-ghostty
 hypridle
 hyprland
 hyprlock
@@ -18,3 +17,4 @@ wl-clip-persist
 wl-clipboard
 xdg-desktop-portal-hyprland
 yazi
+foot
