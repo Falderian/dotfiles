@@ -1,0 +1,38 @@
+hide_window_decorations yes
+window_padding_width 10
+
+# Tab Bar
+tab_bar_edge top
+tab_bar_style powerline
+tab_powerline_style slanted
+tab_title_template "{index}: {title}{' [•]' if layout_name == 'stack' else ''}"
+
+
+# Key Mappings
+map alt+1 goto_tab 1
+map alt+2 goto_tab 2
+map alt+3 goto_tab 3
+map alt+4 goto_tab 4
+map alt+5 goto_tab 5
+map alt+6 goto_tab 6
+map alt+7 goto_tab 7
+map alt+8 goto_tab 8
+map alt+9 goto_tab 9
+map alt+0 goto_tab 10
+map alt+s select_tab
+map ctrl+shift+t launch --type=tab --cwd=current
+
+# BEGIN_KITTY_FONTS
+font_family      family="Rec Mono Casual"
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS
+map kitty_mod+backspace detach_window new-tab
+
+# The first layout in the list becomes the default
+enabled_layouts grid, stack, tall
+map kitty_mod+z toggle_layout stack
+# Navigate the 2x2 grid smoothly using Helix movement keys
+map ctrl+j previous_window
+map ctrl+k next_window
