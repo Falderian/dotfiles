@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:wiki.hyprland.org)",
+      "WebFetch(domain:wiki.hypr.land)",
+      "WebSearch",
+      "WebFetch(domain:deepwiki.com)",
+      "Bash(lua -e 'assert\\(loadfile\\(\"/home/admin/Temp/dotfiles/configs/hyprland/lua/autostart.lua\"\\)\\)')",
+      "Bash(luajit -bl /home/admin/Temp/dotfiles/configs/hyprland/lua/monitors.lua /dev/null)",
+      "Bash(lua -e 'assert\\(loadfile\\(\"/home/admin/Temp/dotfiles/configs/hyprland/lua/monitors.lua\"\\)\\)')",
+      "Bash(lua -e 'assert\\(loadfile\\(\"lua/environments.lua\"\\)\\)')",
+      "Bash(luajit *)",
+      "Bash(luajit -bl /home/admin/Temp/dotfiles/configs/hyprland/lua/decoration.lua /dev/null)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(luajit -bl lua/general.lua /dev/null)",
+      "Bash(lua -e 'assert\\(loadfile\\(\"lua/general.lua\"\\)\\)')",
+      "Bash(lua5.1 -e 'assert\\(loadfile\\(\"lua/general.lua\"\\)\\)')",
+      "Bash(luajit -bl lua/misc.lua /dev/null)",
+      "Bash(lua -e 'assert\\(loadfile\\(\"lua/misc.lua\"\\)\\)')",
+      "Bash(lua *)",
+      "Bash(command -v luajit)",
+      "Bash(command -v lua)"
+    ]
+  }
+}

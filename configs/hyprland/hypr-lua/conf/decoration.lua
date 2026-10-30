@@ -1,0 +1,17 @@
+-- See https://wiki.hypr.land/Configuring/Basics/Variables/
+hl.config({
+    decoration = {
+        rounding = 2,
+        blur = {
+            enabled = true,
+            size    = 3,
+            passes  = 1,
+        },
+        shadow = {
+            enabled      = true,
+            range        = 4,
+            render_power = 3,
+            color        = "rgba(1a1a1aee)",
+        },
+    },
+})

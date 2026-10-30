@@ -1,19 +1,90 @@
+# TypeScript/JavaScript language server: vtsls
+[language-server.vtsls]
+command = "vtsls"
+args = ["--stdio"]
+
+# ESLint language server (Arch package: eslint-language-server).
+# Named "eslint" instead of "vscode-eslint-language-server" so Helix's built-in
+# config (which pins experimental.useFlatConfig = false) doesn't apply.
+# The server auto-detects flat config (eslint.config.*) vs legacy (.eslintrc.*).
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+validate = "on"
+run = "onType"
+
+[language-server.eslint.config.workingDirectory]
+mode = "location"
+
+[language-server.eslint.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
+
+[language-server.eslint.config.codeAction.showDocumentation]
+enable = true
+
+# Kept defined so individual Biome projects can opt in from
+# <project>/.helix/languages.toml with:
+#   language-servers = ["biome"]
+#   formatter = { command = "biome", args = ["format", "--stdin-file-path", "%{buffer_name}"] }
 [language-server.biome]
 command = "biome"
 args = ["lsp-proxy"]
 
+# --- TypeScript / JavaScript ---------------------------------------------
+# vtsls = intellisense/refactors, ESLint LSP = diagnostics/code actions,
+# prettier = formatting (reads each project's Prettier config).
+
 [[language]]
 name = "typescript"
-language-servers = [ { name = "typescript-language-server", except-features = ["format"] }, "biome" ]
+language-servers = ["vtsls", "eslint"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
 auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = [ { name = "typescript-language-server", except-features = ["format"] }, "biome" ]
+language-servers = ["vtsls", "eslint"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
 auto-format = true
 
 [[language]]
 name = "javascript"
-language-servers = [ { name = "typescript-language-server", except-features = ["format"] }, "biome" ]
+language-servers = ["vtsls", "eslint"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
 auto-format = true
 
+[[language]]
+name = "jsx"
+language-servers = ["vtsls", "eslint"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+# --- JSON / JSONC ---------------------------------------------------------
+
+[[language]]
+name = "json"
+language-servers = ["vscode-json-language-server"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+[[language]]
+name = "jsonc"
+language-servers = ["vscode-json-language-server"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+# --- CSS / GraphQL --------------------------------------------------------
+
+[[language]]
+name = "css"
+language-servers = ["vscode-css-language-server"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+[[language]]
+name = "graphql"
+language-servers = ["graphql-language-service"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
+auto-format = true

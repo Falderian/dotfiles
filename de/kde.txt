@@ -9,3 +9,6 @@ haruna
 gwenview
 kde-gtk-config
 breeze-gtk
+sddm
+sddm-kcm
+plasma-nm
