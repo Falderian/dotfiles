@@ -1,0 +1,119 @@
+# ==============================================================================
+# Keybinds
+# Defining this table replaces Umbriel's built-in bind set, so every binding
+# that should remain available is listed here.
+# ==============================================================================
+
+[keybinds]
+
+# --- Applications and session ------------------------------------------------
+"Mod+Return" = { action = "spawn foot", repeat = false }
+"Mod+Q" = { action = "window-close", repeat = false }
+"Mod+Escape" = "session-quit"
+"Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
+"Mod+Ctrl+Escape" = { action = "session-quit", repeat = false }
+
+# Hyprland: Super+Ctrl+Space toggled floating.
+"Mod+Ctrl+Space" = { action = "window-toggle-floating", repeat = false }
+"Mod+F" = { action = "window-toggle-fullscreen", repeat = false }
+
+# App launchers from the ML4W scripts.
+"Mod+E" = "spawn ~/.config/ml4w/settings/filemanager.sh"
+"Mod+B" = "spawn ~/.config/ml4w/settings/browser.sh"
+
+# --- Noctalia panels (replace the old rofi menus) ---------------------------
+# Mod+R  app launcher        (was rofi drun)
+# Mod+W  window switcher     (was rofi window)
+# Mod+N  notification center (was rofi + mako history)
+# Mod+M  session/power menu  (was rofi power menu)
+# Mod+V  clipboard history   (was rofi + cliphist)
+"Mod+R" = { action = "spawn noctalia msg panel-toggle launcher", repeat = false }
+"Mod+O" = { action = "spawn noctalia msg window-switcher", repeat = false }
+"Alt+Tab" = { action = "spawn noctalia msg window-switcher hold", repeat = false }
+"Alt+Shift+Tab" = { action = "spawn noctalia msg window-switcher hold reverse", repeat = false }
+"Mod+N" = { action = "spawn noctalia msg panel-toggle control-center", repeat = false }
+"Mod+M" = { action = "spawn noctalia msg panel-toggle session", repeat = false }
+"Mod+V" = { action = "spawn noctalia msg panel-toggle clipboard", repeat = false }
+
+# --- Focus (arrows and hjkl) -------------------------------------------------
+"Mod+Left" = "window-focus-left"
+"Mod+Right" = "window-focus-right"
+"Mod+Up" = "window-focus-up"
+"Mod+Down" = "window-focus-down"
+"Mod+H" = "window-focus-left"
+"Mod+L" = "window-focus-right"
+"Mod+K" = "window-focus-up"
+"Mod+J" = "window-focus-down"
+
+# --- Resize (Hyprland used 20 px relative resizes) --------------------------
+"Mod+Shift+Left" = "window-modify-primary-extent -0.05"
+"Mod+Shift+Right" = "window-modify-primary-extent 0.05"
+"Mod+Shift+Up" = "window-modify-secondary-extent -0.05"
+"Mod+Shift+Down" = "window-modify-secondary-extent 0.05"
+
+# --- Window state and layout -------------------------------------------------
+# Hyprland's Mod+P toggled pseudo-tiling, which Umbriel does not implement.
+# Pinning is the closest available window state.
+"Mod+P" = { action = "window-toggle-pinned", repeat = false }
+"Mod+Tab" = "workspace-next"
+"Mod+Shift+Tab" = "workspace-previous"
+"Mod+W" = { action = "overview-toggle", repeat = false }
+"Mod+Alt+T" = { action = "layout-toggle-split", repeat = false }
+
+# --- Workspaces 1-10 ---------------------------------------------------------
+"Mod+1" = "workspace-switch 1"
+"Mod+2" = "workspace-switch 2"
+"Mod+3" = "workspace-switch 3"
+"Mod+4" = "workspace-switch 4"
+"Mod+5" = "workspace-switch 5"
+"Mod+6" = "workspace-switch 6"
+"Mod+7" = "workspace-switch 7"
+"Mod+8" = "workspace-switch 8"
+"Mod+9" = "workspace-switch 9"
+"Mod+0" = "workspace-switch 10"
+
+"Mod+Shift+1" = "window-move-to-workspace 1"
+"Mod+Shift+2" = "window-move-to-workspace 2"
+"Mod+Shift+3" = "window-move-to-workspace 3"
+"Mod+Shift+4" = "window-move-to-workspace 4"
+"Mod+Shift+5" = "window-move-to-workspace 5"
+"Mod+Shift+6" = "window-move-to-workspace 6"
+"Mod+Shift+7" = "window-move-to-workspace 7"
+"Mod+Shift+8" = "window-move-to-workspace 8"
+"Mod+Shift+9" = "window-move-to-workspace 9"
+"Mod+Shift+0" = "window-move-to-workspace 10"
+
+"Mod+Shift+j" = { action = "workspace-next" }
+"Mod+Shift+k" = { action = "workspace-previous" }
+ 
+# Hyprland: Super+mouse_down/up switched workspace e+1 / e-1.
+"Mod+WheelDown" = { action = "workspace-next", cooldown_ms = 150 }
+"Mod+WheelUp" = { action = "workspace-previous", cooldown_ms = 150 }
+
+# --- Screenshots (Noctalia, replaces hyprshot) ------------------------------
+"Mod+F12" = { action = "spawn noctalia msg screenshot-fullscreen", repeat = false }
+"Mod+Ctrl+F12" = { action = "spawn noctalia msg screenshot-region", repeat = false }
+"Mod+Shift+F12" = { action = "spawn noctalia msg screenshot-region", repeat = false }
+
+# --- Media ------------------------------------------------------------------
+"XF86AudioPlay" = { action = "spawn noctalia msg media toggle", allow_when_locked = true, repeat = false }
+"XF86AudioPrev" = { action = "spawn noctalia msg media previous", allow_when_locked = true }
+"XF86AudioNext" = { action = "spawn noctalia msg media next", allow_when_locked = true }
+
+"KP_Left" = { action = "spawn noctalia msg media previous", repeat = false }
+"KP_Right" = { action = "spawn noctalia msg media next", repeat = false }
+"KP_Begin" = { action = "spawn noctalia msg media toggle", repeat = false }
+"KP_Insert" = { action = "spawn playerctld shift", repeat = false }
+
+# --- Volume -----------------------------------------------------------------
+"XF86AudioLowerVolume" = { action = "spawn noctalia msg volume-down", allow_when_locked = true }
+"XF86AudioRaiseVolume" = { action = "spawn noctalia msg volume-up", allow_when_locked = true }
+"XF86AudioMute" = { action = "spawn noctalia msg volume-mute", allow_when_locked = true, repeat = false }
+
+# --- System -----------------------------------------------------------------
+# Lock before suspending, matching hypridle's before_sleep_cmd.
+"Mod+Ctrl+L" = { action = "spawn noctalia msg session lock-and-suspend", repeat = false }
+"Mod+Shift+B" = { action = "spawn noctalia msg config-reload", repeat = false }
+"Mod+Shift+W" = { action = "spawn noctalia msg panel-toggle wallpaper", repeat = false }
+
+# Brightness keys are laptop-only; see modules/laptop.toml.

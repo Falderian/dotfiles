@@ -1,0 +1,22 @@
+# ==============================================================================
+# Input
+# ==============================================================================
+
+[input.keyboard]
+layout = "us,ru"
+options = "grp:win_space_toggle" # Super+Space switches layouts
+numlock_toggle = true
+
+[input.mouse]
+sensitivity = 0.0
+
+# Touchpad settings live in modules/laptop.toml (laptop-only).
+
+[input.focus]
+follows_mouse = true
+hover_raises = true
+
+[input.cursor]
+theme = "BreezeX-Black"
+size = 24
+

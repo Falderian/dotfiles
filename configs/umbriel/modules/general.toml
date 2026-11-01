@@ -1,0 +1,41 @@
+# ==============================================================================
+# General
+# ==============================================================================
+
+[general]
+# Noctalia replaces waybar, hyprpaper and hypridle; it is the only shell needed.
+autostart = [
+  "noctalia",
+  "telegram-desktop -startintray",
+]
+mod_key = "Super"
+# The old Hyprland config disabled its startup logo/splash; keep startup quiet.
+show_cheatsheet = false
+
+# ==============================================================================
+# Environment
+# XDG_CURRENT_DESKTOP, XDG_SESSION_DESKTOP and XDG_SESSION_TYPE are owned by
+# Umbriel and are intentionally not set here.
+# ==============================================================================
+
+[environment]
+QT_QPA_PLATFORM = "wayland;xcb"
+QT_QPA_PLATFORMTHEME = "qt6ct"
+QT_WAYLAND_DISABLE_WINDOWDECORATION = "1"
+QT_AUTO_SCREEN_SCALE_FACTOR = "1"
+GDK_SCALE = "1"
+MOZ_ENABLE_WAYLAND = "1"
+APPIMAGELAUNCHER_DISABLE = "1"
+OZONE_PLATFORM = "wayland"
+ELECTRON_OZONE_PLATFORM_HINT = "auto"
+GTK_THEME_ICON = "Papirus"
+
+# ==============================================================================
+# Hot corner: top-left opens the overview after a short rest.
+# ==============================================================================
+
+[hot_corners.top_left]
+enabled = true
+delay_ms = 500
+action = "overview-open"
+

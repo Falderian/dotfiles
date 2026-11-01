@@ -1,0 +1,390 @@
+# ==============================================================================
+# Umbriel configuration
+# Migrated from the Hyprland config in ~/.config/hypr on 2026-10-31.
+#
+# Umbriel reference: https://docs.noctalia.dev/umbriel/
+# Noctalia shell:   https://docs.noctalia.dev/noctalia/
+#
+# Check edits with: umbriel config validate
+# The Hyprland config is untouched; this file is the Umbriel replacement.
+# ==============================================================================
+
+[include]
+files = []
+
+[include.optional]
+files = []
+
+# ==============================================================================
+# General
+# ==============================================================================
+
+[general]
+# Noctalia replaces waybar, hyprpaper and hypridle; it is the only shell needed.
+autostart = [
+  "noctalia",
+  "telegram-desktop -startintray",
+  "slack -u",
+]
+mod_key = "Super"
+# The old Hyprland config disabled its startup logo/splash; keep startup quiet.
+show_cheatsheet = false
+
+# ==============================================================================
+# Environment
+# XDG_CURRENT_DESKTOP, XDG_SESSION_DESKTOP and XDG_SESSION_TYPE are owned by
+# Umbriel and are intentionally not set here.
+# ==============================================================================
+
+[environment]
+QT_QPA_PLATFORM = "wayland;xcb"
+QT_QPA_PLATFORMTHEME = "qt6ct"
+QT_WAYLAND_DISABLE_WINDOWDECORATION = "1"
+QT_AUTO_SCREEN_SCALE_FACTOR = "1"
+GDK_SCALE = "1"
+MOZ_ENABLE_WAYLAND = "1"
+APPIMAGELAUNCHER_DISABLE = "1"
+OZONE_PLATFORM = "wayland"
+ELECTRON_OZONE_PLATFORM_HINT = "auto"
+
+# ==============================================================================
+# Output
+# Hyprland had:  monitor = DP-2, cm = hdr, sdrbrightness = 1.2, sdrsaturation = 0.98
+# Umbriel has no per-output SDR saturation control, so only brightness is mapped.
+# sdr_white = 1.2 x 203 cd/m2 (Umbriel's default SDR reference white).
+# The horizontal workspace axis keeps the old 3-finger horizontal swipe.
+# ==============================================================================
+
+[output.DP-2]
+mode = "1920x1080@180"
+hdr = "on"
+sdr_white = 244
+bit_depth = 8
+
+# ==============================================================================
+# Input
+# ==============================================================================
+
+[input.keyboard]
+layout = "us,ru"
+options = "grp:win_space_toggle" # Super+Space switches layouts
+numlock_toggle = true
+
+[input.mouse]
+sensitivity = 0.0
+
+[input.touchpad]
+natural_scroll = false
+disable_while_typing = true
+sensitivity = 0.0
+
+[input.focus]
+follows_mouse = true
+hover_raises = true
+
+[input.cursor]
+theme = "Adwaita"
+size = 24
+
+# ==============================================================================
+# Appearance
+# Hyprland used a 45-degree gradient between #BF616A and #3C0000 for focused
+# borders. Umbriel borders are a single color, so the first gradient stop is
+# used. Inactive border and shadow colors are preserved.
+# ==============================================================================
+
+[colors]
+shadow = "#1A1A1AEE"
+
+[colors.border]
+focused = "#BF616AFF"
+unfocused = "#3A3A3AFF"
+
+[appearance]
+border_width = 2
+corner_radius = 2
+
+[appearance.blur]
+enabled = true
+optimized = true
+passes = 1
+radius = 3
+
+# Hyprland: shadow range 4, render_power 3, offset 0, color 0xee1a1a1a.
+[appearance.shadow]
+enabled = true
+softness = 4
+offset_x = 0
+offset_y = 0
+
+# ==============================================================================
+# Layout
+# Hyprland: dwindle, gaps_in 5, gaps_out 10/15/10/15.
+# Umbriel has one gap value; the asymmetric outer gap becomes struts.
+# ==============================================================================
+
+[layout]
+mode = "scrolling"
+gap = 5
+
+[layout.struts]
+left = 5
+right = 5
+top = 5
+bottom = 5
+
+# ==============================================================================
+# Animation
+# Hyprland's custom bezier and slide/popin styles are preserved. Hyprland's
+# workspace "fade" has no Umbriel equivalent; Umbriel uses its slide style.
+# ==============================================================================
+
+[animation]
+enabled = true
+duration_ms = 200
+curve = "easeout"
+
+[animation.beziers]
+myBezier = [0.15, 0.9, 0.1, 1.05]
+
+[animation.windows_in]
+enabled = true
+duration_ms = 180
+curve = "myBezier"
+style = "slide"
+
+[animation.windows_out]
+enabled = true
+duration_ms = 180
+curve = "easeout"
+style = "popin"
+scale = 0.8
+
+[animation.windows_move]
+enabled = true
+duration_ms = 150
+curve = "easeout"
+
+[animation.windows_resize]
+enabled = true
+duration_ms = 150
+curve = "easeout"
+
+[animation.windows_opacity]
+enabled = true
+duration_ms = 150
+curve = "easeout"
+
+[animation.workspaces]
+enabled = true
+duration_ms = 250
+curve = "myBezier"
+style = "slide"
+
+[animation.border]
+enabled = true
+duration_ms = 150
+curve = "easeout"
+
+# ==============================================================================
+# Window rules
+# ==============================================================================
+
+# Blur every window (Hyprland: decoration.blur.enabled).
+[[window_rule]]
+blur = true
+
+# Clipse clipboard manager (Hyprland class "clipse", 622x652).
+[[window_rule]]
+match.app_id = "^clipse$"
+default_floating = true
+default_floating_size_px = { width = 622, height = 652 }
+
+# TUI applications.
+[[window_rule]]
+match.title = "(bluetuith|nmtui|pulsemixer)"
+default_floating = true
+
+# btop, 70% of the usable area, centered.
+[[window_rule]]
+match.title = "^btop$"
+default_floating = true
+default_floating_size = { width = 0.7, height = 0.7 }
+
+# Screenshare / portal dialogs.
+[[window_rule]]
+match.app_id = "^xdg-desktop-portal"
+default_floating = true
+
+# Noctalia's settings window.
+[[window_rule]]
+match.app_id = "^dev.noctalia.Noctalia$"
+default_floating = true
+default_floating_size_px = { width = 1020, height = 900 }
+
+# Umbriel's own share picker.
+[[window_rule]]
+match.app_id = "^dev.noctalia.UmbrielSharePicker$"
+default_floating = true
+default_floating_size_px = { width = 800, height = 600 }
+
+# Browser picture-in-picture windows.
+[[window_rule]]
+match.title = "^(Picture-in-Picture|Picture in picture)$"
+default_floating = true
+
+# Noctalia notification toasts.
+[[window_rule]]
+match.title = "^notificationtoasts_.+_desktop"
+default_position = { x = 0, y = 0, anchor = "bottom_right" }
+default_focused = false
+default_pinned = true
+
+# ==============================================================================
+# Layer rules
+# Let Noctalia's bar, panels, dock, notifications and OSDs blur the desktop.
+# ==============================================================================
+
+[[layer_rule]]
+match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd|desktop-widget-[^\"]*)$"
+blur = true
+blur_ignore_alpha = 0.5
+blur_popups = true
+
+# Panels, the dock, notifications and OSDs open over windows, so they blur the
+# live content behind them. The bar and desktop widgets sit on the wallpaper.
+[[layer_rule]]
+match.namespace = "^noctalia-(notification|dock|panel|attached-panel|osd)$"
+blur_optimized = false
+
+# ==============================================================================
+# Keybinds
+# Defining this table replaces Umbriel's built-in bind set, so every binding
+# that should remain available is listed here.
+# ==============================================================================
+
+[keybinds]
+
+# --- Applications and session ------------------------------------------------
+"Mod+Return" = { action = "spawn foot", repeat = false }
+"Mod+Q" = { action = "window-close", repeat = false }
+"Mod+Escape" = "session-quit"
+"Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
+"Mod+Ctrl+Escape" = { action = "session-quit", repeat = false }
+
+# Hyprland: Super+Ctrl+Space toggled floating.
+"Mod+Ctrl+Space" = { action = "window-toggle-floating", repeat = false }
+"Mod+F" = { action = "window-toggle-fullscreen", repeat = false }
+
+# App launchers from the ML4W scripts.
+"Mod+E" = "spawn ~/.config/ml4w/settings/filemanager.sh"
+"Mod+B" = "spawn ~/.config/ml4w/settings/browser.sh"
+
+# --- Noctalia panels (replace the old rofi menus) ---------------------------
+# Mod+R  app launcher        (was rofi drun)
+# Mod+W  window switcher     (was rofi window)
+# Mod+N  notification center (was rofi + mako history)
+# Mod+M  session/power menu  (was rofi power menu)
+# Mod+V  clipboard history   (was rofi + cliphist)
+"Mod+R" = { action = "spawn noctalia msg panel-toggle launcher", repeat = false }
+"Mod+O" = { action = "spawn noctalia msg window-switcher", repeat = false }
+"Alt+Tab" = { action = "spawn noctalia msg window-switcher hold", repeat = false }
+"Alt+Shift+Tab" = { action = "spawn noctalia msg window-switcher hold reverse", repeat = false }
+"Mod+N" = { action = "spawn noctalia msg panel-toggle control-center", repeat = false }
+"Mod+M" = { action = "spawn noctalia msg panel-toggle session", repeat = false }
+"Mod+V" = { action = "spawn noctalia msg panel-toggle clipboard", repeat = false }
+
+# --- Focus (arrows and hjkl) -------------------------------------------------
+"Mod+Left" = "window-focus-left"
+"Mod+Right" = "window-focus-right"
+"Mod+Up" = "window-focus-up"
+"Mod+Down" = "window-focus-down"
+"Mod+H" = "window-focus-left"
+"Mod+L" = "window-focus-right"
+"Mod+K" = "window-focus-up"
+"Mod+J" = "window-focus-down"
+
+# --- Resize (Hyprland used 20 px relative resizes) --------------------------
+"Mod+Shift+Left" = "window-modify-primary-extent -0.05"
+"Mod+Shift+Right" = "window-modify-primary-extent 0.05"
+"Mod+Shift+Up" = "window-modify-secondary-extent -0.05"
+"Mod+Shift+Down" = "window-modify-secondary-extent 0.05"
+
+# --- Window state and layout -------------------------------------------------
+# Hyprland's Mod+P toggled pseudo-tiling, which Umbriel does not implement.
+# Pinning is the closest available window state.
+"Mod+P" = { action = "window-toggle-pinned", repeat = false }
+"Mod+Tab" = "workspace-next"
+"Mod+Shift+Tab" = "workspace-previous"
+"Mod+W" = { action = "overview-toggle", repeat = false }
+"Mod+Alt+T" = { action = "layout-toggle-split", repeat = false }
+
+# --- Workspaces 1-10 ---------------------------------------------------------
+"Mod+1" = "workspace-switch 1"
+"Mod+2" = "workspace-switch 2"
+"Mod+3" = "workspace-switch 3"
+"Mod+4" = "workspace-switch 4"
+"Mod+5" = "workspace-switch 5"
+"Mod+6" = "workspace-switch 6"
+"Mod+7" = "workspace-switch 7"
+"Mod+8" = "workspace-switch 8"
+"Mod+9" = "workspace-switch 9"
+"Mod+0" = "workspace-switch 10"
+
+"Mod+Shift+1" = "window-move-to-workspace 1"
+"Mod+Shift+2" = "window-move-to-workspace 2"
+"Mod+Shift+3" = "window-move-to-workspace 3"
+"Mod+Shift+4" = "window-move-to-workspace 4"
+"Mod+Shift+5" = "window-move-to-workspace 5"
+"Mod+Shift+6" = "window-move-to-workspace 6"
+"Mod+Shift+7" = "window-move-to-workspace 7"
+"Mod+Shift+8" = "window-move-to-workspace 8"
+"Mod+Shift+9" = "window-move-to-workspace 9"
+"Mod+Shift+0" = "window-move-to-workspace 10"
+
+"Mod+Shift+j" = { action = "workspace-next" }
+"Mod+Shift+k" = { action = "workspace-previous" }
+ 
+# Hyprland: Super+mouse_down/up switched workspace e+1 / e-1.
+"Mod+WheelDown" = { action = "workspace-next", cooldown_ms = 150 }
+"Mod+WheelUp" = { action = "workspace-previous", cooldown_ms = 150 }
+
+# --- Screenshots (Noctalia, replaces hyprshot) ------------------------------
+"Mod+F12" = { action = "spawn noctalia msg screenshot-fullscreen", repeat = false }
+"Mod+Ctrl+F12" = { action = "spawn noctalia msg screenshot-region", repeat = false }
+"Mod+Shift+F12" = { action = "spawn noctalia msg screenshot-region", repeat = false }
+
+# --- Media ------------------------------------------------------------------
+"XF86AudioPlay" = { action = "spawn noctalia msg media toggle", allow_when_locked = true, repeat = false }
+"XF86AudioPrev" = { action = "spawn noctalia msg media previous", allow_when_locked = true }
+"XF86AudioNext" = { action = "spawn noctalia msg media next", allow_when_locked = true }
+
+"KP_Left" = { action = "spawn noctalia msg media previous", repeat = false }
+"KP_Right" = { action = "spawn noctalia msg media next", repeat = false }
+"KP_Begin" = { action = "spawn noctalia msg media toggle", repeat = false }
+"KP_Insert" = { action = "spawn playerctld shift", repeat = false }
+
+# --- Volume -----------------------------------------------------------------
+"XF86AudioLowerVolume" = { action = "spawn noctalia msg volume-down", allow_when_locked = true }
+"XF86AudioRaiseVolume" = { action = "spawn noctalia msg volume-up", allow_when_locked = true }
+"XF86AudioMute" = { action = "spawn noctalia msg volume-mute", allow_when_locked = true, repeat = false }
+
+# --- System -----------------------------------------------------------------
+# Lock before suspending, matching hypridle's before_sleep_cmd.
+"Mod+Ctrl+L" = { action = "spawn noctalia msg session lock-and-suspend", repeat = false }
+"Mod+Shift+B" = { action = "spawn noctalia msg config-reload", repeat = false }
+"Mod+Shift+W" = { action = "spawn noctalia msg panel-toggle wallpaper", repeat = false }
+
+"XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down", allow_when_locked = true }
+"XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up", allow_when_locked = true }
+
+# ==============================================================================
+# Hot corner: top-left opens the overview after a short rest.
+# ==============================================================================
+
+[hot_corners.top_left]
+enabled = true
+delay_ms = 500
+action = "overview-open"
+
+

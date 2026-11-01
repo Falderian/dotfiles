@@ -1,0 +1,43 @@
+# ==============================================================================
+# Laptop-only configuration
+# Listed but commented out in config.toml on the desktop. On the laptop,
+# uncomment "modules/laptop.toml" in [include].files.
+#
+# Touchpad settings moved from modules/input.toml.
+# Brightness keybinds moved from modules/keybinds.toml.
+# No [output.eDP-1] block: Umbriel enables the internal panel automatically,
+# and connector names/modes differ per machine.
+# ==============================================================================
+
+[input.touchpad]
+natural_scroll = false
+disable_while_typing = true
+sensitivity = 0.0
+
+# ==============================================================================
+# Lid
+# Lock, then suspend, matching the Mod+Ctrl+L binding. Values in [events] are
+# shell commands, so this calls the Noctalia CLI directly; Umbriel itself has
+# no lock-and-suspend action. No lid_open action is needed because the internal
+# panel is not disabled while the lid is closed.
+#
+# Note: Umbriel runs the lid command once at startup for the current lid state,
+# so logging in with the lid already closed will lock and suspend.
+# ==============================================================================
+
+[events]
+lid_close = "noctalia msg session lock-and-suspend"
+
+# ==============================================================================
+# Keybinds
+# Merged by key with [keybinds] in modules/keybinds.toml.
+# ==============================================================================
+
+[keybinds]
+"XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down", allow_when_locked = true }
+"XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up", allow_when_locked = true }
+
+# Optional: uncomment only if the laptop has a backlit keyboard.
+# "XF86KbdBrightnessDown" = "spawn noctalia msg keyboard-backlight-down"
+# "XF86KbdBrightnessUp" = "spawn noctalia msg keyboard-backlight-up"
+# "XF86KbdLightOnOff" = "spawn noctalia msg keyboard-backlight-toggle"

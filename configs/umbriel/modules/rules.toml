@@ -1,0 +1,70 @@
+# ==============================================================================
+# Window rules
+# ==============================================================================
+
+# Blur every window (Hyprland: decoration.blur.enabled).
+[[window_rule]]
+blur = true
+
+# Clipse clipboard manager (Hyprland class "clipse", 622x652).
+[[window_rule]]
+match.app_id = "^clipse$"
+default_floating = true
+default_floating_size_px = { width = 622, height = 652 }
+
+# TUI applications.
+[[window_rule]]
+match.title = "(bluetuith|nmtui|pulsemixer)"
+default_floating = true
+
+# btop, 70% of the usable area, centered.
+[[window_rule]]
+match.title = "^btop$"
+default_floating = true
+default_floating_size = { width = 0.7, height = 0.7 }
+
+# Screenshare / portal dialogs.
+[[window_rule]]
+match.app_id = "^xdg-desktop-portal"
+default_floating = true
+
+# Noctalia's settings window.
+[[window_rule]]
+match.app_id = "^dev.noctalia.Noctalia$"
+default_floating = true
+default_floating_size_px = { width = 1020, height = 900 }
+
+# Umbriel's own share picker.
+[[window_rule]]
+match.app_id = "^dev.noctalia.UmbrielSharePicker$"
+default_floating = true
+default_floating_size_px = { width = 800, height = 600 }
+
+# Browser picture-in-picture windows.
+[[window_rule]]
+match.title = "^(Picture-in-Picture|Picture in picture)$"
+default_floating = true
+
+# Noctalia notification toasts.
+[[window_rule]]
+match.title = "^notificationtoasts_.+_desktop"
+default_position = { x = 0, y = 0, anchor = "bottom_right" }
+default_focused = false
+default_pinned = true
+
+# ==============================================================================
+# Layer rules
+# Let Noctalia's bar, panels, dock, notifications and OSDs blur the desktop.
+# ==============================================================================
+
+[[layer_rule]]
+match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd|desktop-widget-[^\"]*)$"
+blur = true
+blur_ignore_alpha = 0.5
+blur_popups = true
+
+# Panels, the dock, notifications and OSDs open over windows, so they blur the
+# live content behind them. The bar and desktop widgets sit on the wallpaper.
+[[layer_rule]]
+match.namespace = "^noctalia-(notification|dock|panel|attached-panel|osd)$"
+blur_optimized = false

@@ -1,0 +1,13 @@
+# ==============================================================================
+# Output
+# Hyprland had:  monitor = DP-2, cm = hdr, sdrbrightness = 1.2, sdrsaturation = 0.98
+# Umbriel has no per-output SDR saturation control, so only brightness is mapped.
+# sdr_white = 1.2 x 203 cd/m2 (Umbriel's default SDR reference white).
+# The horizontal workspace axis keeps the old 3-finger horizontal swipe.
+# ==============================================================================
+
+[output.DP-2]
+mode = "1920x1080@180"
+hdr = "on"
+sdr_white = 244
+bit_depth = 8

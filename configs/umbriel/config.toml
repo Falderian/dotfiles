@@ -1,0 +1,26 @@
+# ==============================================================================
+# Umbriel configuration
+# Migrated from the Hyprland config in ~/.config/hypr on 2026-10-31.
+#
+# Umbriel reference: https://docs.noctalia.dev/umbriel/
+# Noctalia shell:   https://docs.noctalia.dev/noctalia/
+#
+# Check edits with: umbriel config validate
+# The Hyprland config is untouched; this file is the Umbriel replacement.
+#
+# Settings live in modules/ and are merged in the order listed below.
+# ==============================================================================
+
+[include]
+files = [
+  "modules/general.toml",    # general, environment, hot corners
+  "modules/output.toml",     # monitor DP-2
+  "modules/input.toml",      # keyboard, mouse, focus, cursor
+  "modules/appearance.toml", # colors, borders, blur, layout, animation
+  "modules/rules.toml",      # window and layer rules
+  "modules/keybinds.toml",   # all keybinds
+  # "modules/laptop.toml",   # laptop only: touchpad, lid, brightness keys
+]
+
+[include.optional]
+files = []

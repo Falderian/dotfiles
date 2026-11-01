@@ -1,0 +1,98 @@
+# ==============================================================================
+# Appearance
+# Hyprland used a 45-degree gradient between #BF616A and #3C0000 for focused
+# borders. Umbriel borders are a single color, so the first gradient stop is
+# used. Inactive border and shadow colors are preserved.
+# ==============================================================================
+[colors]
+shadow = "#1A1A1AEE"
+
+[colors.border]
+focused = "#BF616AFF"
+unfocused = "#3A3A3AFF"
+
+[appearance]
+border_width = 2
+corner_radius = 2
+
+[appearance.blur]
+enabled = true
+optimized = true
+passes = 1
+radius = 3
+
+# Hyprland: shadow range 4, render_power 3, offset 0, color 0xee1a1a1a.
+[appearance.shadow]
+enabled = true
+softness = 4
+offset_x = 0
+offset_y = 0
+
+# ==============================================================================
+# Layout
+# Hyprland: dwindle, gaps_in 5, gaps_out 10/15/10/15.
+# Umbriel has one gap value; the asymmetric outer gap becomes struts.
+# ==============================================================================
+
+[layout]
+mode = "dwindle"
+gap = 5
+
+[layout.struts]
+left = 5
+right = 5
+top = 5
+bottom = 5
+
+# ==============================================================================
+# Animation
+# Hyprland's custom bezier and slide/popin styles are preserved. Hyprland's
+# workspace "fade" has no Umbriel equivalent; Umbriel uses its slide style.
+# ==============================================================================
+
+[animation]
+enabled = true
+duration_ms = 200
+curve = "easeout"
+
+[animation.beziers]
+myBezier = [0.15, 0.9, 0.1, 1.05]
+
+[animation.windows_in]
+enabled = true
+duration_ms = 180
+curve = "myBezier"
+style = "fade"
+
+[animation.windows_out]
+enabled = true
+duration_ms = 180
+curve = "easeout"
+style = "popin"
+scale = 0.8
+
+[animation.windows_move]
+enabled = true
+duration_ms = 150
+curve = "easeout"
+
+[animation.windows_resize]
+enabled = true
+duration_ms = 150
+curve = "easeout"
+
+[animation.windows_opacity]
+enabled = true
+duration_ms = 150
+curve = "easeout"
+
+[animation.workspaces]
+enabled = true
+duration_ms = 250
+curve = "myBezier"
+style = "slide"
+
+[animation.border]
+enabled = true
+duration_ms = 150
+curve = "easeout"
